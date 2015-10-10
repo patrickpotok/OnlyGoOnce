@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCookies',
+'ngResource',
+'ngSanitize'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,7 +25,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -82,4 +84,35 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 
-});
+  $httpProvider.interceptors.push('authInterceptor');
+
+})
+
+.factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
+  return {
+    // Add authorization token to headers
+    request: function (config) {
+      config.headers = config.headers || {};
+      console.log(config.headers)
+      if ($cookieStore.get('token')) {
+        config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
+        console.log(config.headers)
+      }
+      return config;
+    },
+
+    // Intercept 401s and redirect you to login
+    responseError: function(response) {
+      console.log(response)
+      if(response.status === 401) {
+        $location.path('/login');
+        // remove any stale tokens
+        $cookieStore.remove('token');
+        return $q.reject(response);
+      }
+      else {
+        return $q.reject(response);
+      }
+    }
+  };
+})

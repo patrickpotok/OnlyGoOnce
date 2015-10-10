@@ -1,4 +1,14 @@
 {
   "name": "FindAFeast",
-  "app_id": ""
+  "app_id": "",
+  "proxies": [
+  {
+    "path": "/auth",
+    "proxyUrl": "http://localhost:9000/auth/"
+  },
+  {
+    "path": "/api",
+    "proxyUrl": "http://localhost:9000/api/"
+  }
+]
 }

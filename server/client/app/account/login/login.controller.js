@@ -24,6 +24,6 @@ angular.module('feastBackendApp')
     };
 
     $scope.loginOauth = function(provider) {
-      $window.location.href = '/auth/' + provider;
+      $location.href = '/auth/' + provider;
     };
   });
