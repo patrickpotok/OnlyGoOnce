@@ -24,6 +24,7 @@ angular.module('starter.controllers', [])
     //  window.open('http://localhost:9000/auth/' + provider, '_system', 'location=yes');
     $window.location.href = 'http://localhost:9000/auth/' + provider;
   };
+
   
 })
 
