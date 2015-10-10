@@ -7,5 +7,25 @@ body {
 }
 
 .main-menu-button {
-    max-width: 80%;
+    max-width: 100%;
+}
+
+.black-text {
+    color: #000000 !important;
+}
+
+.ion-gear-a {
+    float: right;
+}
+
+.main-logo {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hidden-button {
+    visibility: hidden !important;
+    cursor: default;
 }

@@ -1,25 +1,57 @@
-<ion-view view-title="Dashboard-in" class="dashboard">
+<ion-view view-title="Dashboard" class="dashboard">
   <ion-content class="padding">
     <div class="row">
-      <div class="col col-75">
-        <div ng-show="isLoggedIn()"> Logged In: {{user.name}} </div>
+      <div class="col col-10">
+        <!--div ng-show="isLoggedIn()"> Logged In: {{user.name}} </div-->
       </div>
       <div class="col">
-        <button class="button icon ion-gear-a button-energized"></button>
+        <button class="button icon ion-gear-a button-energized black-text" ui-sref="dash-settings"></button>
       </div>
+      <div class="col col-10"></div>
     </div>
 
-    <button class="button button-block button-energized main-menu-button">
-      Find me a Fresh Feast
-    </button>
-    <button class="button button-block button-energized main-menu-button">
-      Browse Feasts nearby
-    </button>
-    <button class="button button-block button-energized main-menu-button">
-      Browse Feasts anywhere
-    </button>
+    <br>
 
-    <button ng-show="!isLoggedIn()" ng-click="loginOauth('google')">Login</button>
+    <div class="row">
+      <div class="col col-10"></div>
+        <div class="col col-80">
+          <img ng-src="img/freshfeast.gif" class="main-logo">
+        </div>
+      <div class="col col-10"></div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row">
+      <div class="col col-10"></div>
+      <div class="col">
+          <button class="button button-block button-energized main-menu-button" ui-sref="dash-restaurant-info">
+            <strong class="black-text">Find me a Fresh Feast</strong>
+          </button>
+      </div>
+      <div class="col col-10"></div>
+    </div>
+    <div class="row">
+    <div class="col col-10"></div>
+      <div class="col">
+        <button class="button button-block button-energized main-menu-button" ui-sref="dash-browse-here">
+          <strong class="black-text">Browse Feasts nearby</strong>
+        </button>
+      </div>
+      <div class="col col-10"></div>
+    </div>
+    <div class="row">
+    <div class="col col-10"></div>
+      <div class="col">
+        <button class="button button-block button-energized main-menu-button" ui-sref="dash-browse-any">
+          <strong class="black-text">Browse Feasts anywhere</strong>
+        </button>
+      </div>
+      <div class="col col-10"></div>
+    </div>
+
+    <!--Remove this logout once, we can logout through setting-->
     <button ng-show="isLoggedIn()" ng-click="logout()">Logout</button>
   </ion-content>
 </ion-view>

@@ -5,9 +5,14 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCookies',
-'ngResource',
-'ngSanitize'])
+angular.module('starter', [
+  'ionic',
+  'starter.controllers',
+  'starter.services',
+  'ngCookies',
+  'ngResource',
+  'ngSanitize'
+])
 
 .run(function($ionicPlatform, $rootScope, $location, Auth) {
   $ionicPlatform.ready(function() {
@@ -26,6 +31,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
 
   $rootScope.$on('$stateChangeStart', function (event, next) {
     Auth.isLoggedInAsync(function(loggedIn) {
+      if (loggedIn) { $location.path('/loggedIn'); }
       if (next.authenticate && !loggedIn) {
         event.preventDefault();
         $location.path('/');
@@ -51,28 +57,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
 
   .state('dash-in', {
     url: '/loggedIn',
-    templateUrl: 'templates/dash-in.html'
+    templateUrl: 'templates/dash-in.html',
+    controller: 'LoginCtrl'
+  })
+
+  .state('dash-settings', {
+    url: '/settings',
+    templateUrl: 'templates/dash-settings.html',
+    //controller: 'SettingsCtrl'
+  })
+
+  .state('dash-restaurant-info', {
+    url: '/restaurantInfo',
+    templateUrl: 'templates/dash-restaurant-info.html',
+    //controller: 'RestaurantCtrl'
+  })
+
+  .state('dash-browse-here', {
+    url: '/browseHere',
+    templateUrl: 'templates/dash-browse-here.html',
+    //controller: 'BrowseHereCtrl'
+  })
+
+  .state('dash-browse-any', {
+    url: '/browseAny',
+    templateUrl: 'templates/dash-browse-any.html',
+    //controller: 'BrowseAnyCtrl'
   });
-
-  // .state('tab.chats', {
-  //   url: '/chats',
-  //   views: {
-  //     'tab-chats': {
-  //       templateUrl: 'templates/tab-chats.html',
-  //       controller: 'ChatsCtrl'
-  //     }
-  //   }
-  // })
-
-  // .state('tab.account', {
-  //   url: '/account',
-  //   views: {
-  //     'tab-account': {
-  //       templateUrl: 'templates/tab-account.html',
-  //       controller: 'AccountCtrl'
-  //     }
-  //   }
-  // });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');
@@ -86,10 +97,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
     // Add authorization token to headers
     request: function (config) {
       config.headers = config.headers || {};
-      console.log(config.headers)
       if ($cookieStore.get('token')) {
         config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
-        console.log(config.headers)
       }
       return config;
     },
@@ -98,7 +107,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
     responseError: function(response) {
       console.log(response)
       if(response.status === 401) {
-        $location.path('/login');
+        $location.path('/');
         // remove any stale tokens
         $cookieStore.remove('token');
         return $q.reject(response);

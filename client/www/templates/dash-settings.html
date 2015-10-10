@@ -1,0 +1,50 @@
+<ion-view view-title="Settings" class="dashboard">
+  <ion-content class="padding">
+    <div class="row">
+        <div class="col col-10"></div>
+        <a class="button icon-left ion-chevron-left button-clear button-dark" ui-sref="dash-in">Back</a>
+        <div ng-show="isLoggedIn()"> Logged In: {{user.name}} </div>
+        <div class="col col-10"></div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col col-10"></div>
+        <div class="col col-80">
+          <img ng-src="../img/freshfeast.gif" class="main-logo">
+        </div>
+      <div class="col col-10"></div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row">
+      <div class="col col-10"></div>
+        <div class="col col-80">
+          <ul class="list">
+            <li class="item item-toggle">
+               Enable Uber
+               <label class="toggle toggle-energized">
+                 <input type="checkbox">
+                 <div class="track">
+                   <div class="handle"></div>
+                 </div>
+               </label>
+            </li>
+            <li class="item item-toggle">
+               Include WouldGoAgain Locations
+               <label class="toggle toggle-energized">
+                 <input type="checkbox">
+                 <div class="track">
+                   <div class="handle"></div>
+                 </div>
+               </label>
+            </li>
+          </ul>
+        </div>
+      <div class="col col-10"></div>
+    </div>
+  </ion-content>
+</ion-view>
