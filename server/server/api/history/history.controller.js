@@ -27,16 +27,31 @@ function handleError(res, err) {
 
 exports.postLogs = function(req, res) {
   var restaurant_id = req.body.restaurant_id;
-  console.log(req);
   Restaurant.find( { external_id : restaurant_id } ,function (err, restaurant) {
     if( err || !restaurant.length) {
         err = err || "No restaurant found with that id";
         return handleError(res, err);
     }
-    console.log(restaurant);
-    History.create({user:req.user, restaurant_id:restaurant[0]}, function(err, history) {
-      if(err) { return handleError(res, err); }
-      return res.status(201).json(history);
-    })
+    console.log(req);
+    History.find({restaurant_id:restaurant_id, user:req.user}, function (err, histories) {
+      if ( !histories.length ) {
+       History.create({user:req.user, restaurant_id:restaurant_id}, function(err, history) {
+          if(err) { return handleError(res, err); }
+             return res.status(201).json(history);
+          })
+      }
+      else {
+        console.log("HERE");
+        console.log(histories);
+        var currentTimesVisited = histories[0].timesVisited + 1;
+        History.update( { restaurant_id:restaurant_id, user: req.user},
+                        { timesVisited: currentTimesVisited },
+                        function (err, histories)
+                        {
+                              if(err) { return handleError(res, err); }
+                              return res.status(200).json(histories);
+                        });
+      }
+    });
   });
 }
