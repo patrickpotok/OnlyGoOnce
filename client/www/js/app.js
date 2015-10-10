@@ -9,7 +9,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
 'ngResource',
 'ngSanitize'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $location, Auth) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -23,6 +23,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       StatusBar.styleLightContent();
     }
   });
+  
+  $rootScope.$on('$stateChangeStart', function (event, next) {
+    Auth.isLoggedInAsync(function(loggedIn) {
+      if (next.authenticate && !loggedIn) {
+        event.preventDefault();
+        $location.path('/login');
+      }
+    });
+  });
+  
 })
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {

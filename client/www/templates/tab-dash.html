@@ -25,7 +25,8 @@
         </div>
       </div>
     </div>
-    <button ng-click="loginOauth('google')">Login</button>
-    <span> {{user}}
+    <button ng-show="!isLoggedIn()" ng-click="loginOauth('google')">Login</button>
+    <div ng-show="isLoggedIn()"> Hi {{user.name}} </div>
+    <button ng-show="isLoggedIn()" ng-click="logout()">Logout</button>
   </ion-content>
 </ion-view>

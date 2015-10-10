@@ -4,18 +4,25 @@ angular.module('starter.controllers', [])
 
 
 .controller('DashCtrl', function($scope, $window, Auth) {
+  
+  $scope.objects = {}
   $scope.user = Auth.getCurrentUser()
+
+  $scope.isLoggedIn = Auth.isLoggedIn;
+  
   
   $scope.test = function(){
     console.log("Test")
   }
   
-  $scope.login = function(){
-    console.log("login")
+  $scope.logout = function(){
+    Auth.logout()
   }
   
   $scope.loginOauth = function(provider) {
-    $window.location.href = '/auth/' + provider;
+    // Window open for Mobile
+    window.open('http://localhost:9000/auth/' + provider, '_system', 'location=yes');
+    //$window.location.href = 'http://localhost:9000/auth/' + provider;
   };
   
   
