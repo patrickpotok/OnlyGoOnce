@@ -13,7 +13,7 @@ exports.index = function(req, res) {
   var userId = req.user && req.user._id;
   var latitude = req.query.latitude
   var longitude = req.query.longitude
-  var number = req.query.number
+  var number = parseInt(req.query.number);
   var url = 'http://places.cit.api.here.com/places/v1/browse?at=' + req.query.latitude + ',' + req.query.longitude + '&app_id=evk3TrU4UcresAseG8Da&app_code=z4yYohROherMZ57eHTsQUg&pretty=true&cat=restaurant';
   var includeGoAgain = req.query.includeGoAgain
   http.get(url, function(response) {
@@ -50,7 +50,6 @@ exports.index = function(req, res) {
               }
             }
           }
-
           // Store Restaurant information if need to. Make more efficient in future
           // Currently stores as we query
           for (var i = 0; i < result.results.items.length; i++){
