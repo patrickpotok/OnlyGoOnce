@@ -21,11 +21,9 @@ angular.module('starter.controllers', [])
   
   $scope.loginOauth = function(provider) {
     // Window open for Mobile
-    window.open('http://localhost:9000/auth/' + provider, '_system', 'location=yes');
-    //$window.location.href = 'http://localhost:9000/auth/' + provider;
+    //  window.open('http://localhost:9000/auth/' + provider, '_system', 'location=yes');
+    $window.location.href = 'http://localhost:9000/auth/' + provider;
   };
-  
-  
   
 })
 
