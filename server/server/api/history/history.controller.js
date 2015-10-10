@@ -30,7 +30,7 @@ exports.postLogs = function(req, res) {
   console.log(req);
   Restaurant.find( { external_id : restaurant_id } ,function (err, restaurant) {
     if( err || !restaurant.length) {
-        err = err || "Ryan is great";
+        err = err || "No restaurant found with that id";
         return handleError(res, err);
     }
     console.log(restaurant);
