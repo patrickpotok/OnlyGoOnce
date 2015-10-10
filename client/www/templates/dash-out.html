@@ -1,0 +1,6 @@
+<ion-view view-title="Dashboard-out" class="dashboard">
+  <ion-content class="padding">
+    <button ng-show="!isLoggedIn()" ng-click="loginOauth('google')">Google Login</button>
+    <button ng-show="isLoggedIn()" ng-click="logout()">Logout</button>
+  </ion-content>
+</ion-view>

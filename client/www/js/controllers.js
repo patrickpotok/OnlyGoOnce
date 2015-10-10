@@ -1,51 +1,32 @@
 angular.module('starter.controllers', [])
 
-
-
-
 .controller('DashCtrl', function($scope, $window, Auth) {
-  
   $scope.objects = {}
   $scope.user = Auth.getCurrentUser()
 
   $scope.isLoggedIn = Auth.isLoggedIn;
-  
-  
+
+
   $scope.test = function(){
     console.log("Test")
-  }
-  
+  };
+
   $scope.logout = function(){
+    console.log($scope.user);
     Auth.logout()
-  }
-  
+  };
+
   $scope.loginOauth = function(provider) {
     // Window open for Mobile
     //  window.open('http://localhost:9000/auth/' + provider, '_system', 'location=yes');
     $window.location.href = 'http://localhost:9000/auth/' + provider;
-  };
-
-  
-})
-
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+    $location.path('/loggedIn');
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+// .controller('LoginCtrl', function($scope) {
+
+// })
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {

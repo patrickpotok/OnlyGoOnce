@@ -1,0 +1,25 @@
+<ion-view view-title="Dashboard-in" class="dashboard">
+  <ion-content class="padding">
+    <div class="row">
+      <div class="col col-75">
+        <div ng-show="isLoggedIn()"> Logged In: {{user.name}} </div>
+      </div>
+      <div class="col">
+        <button class="button icon ion-gear-a button-energized"></button>
+      </div>
+    </div>
+
+    <button class="button button-block button-energized main-menu-button">
+      Find me a Fresh Feast
+    </button>
+    <button class="button button-block button-energized main-menu-button">
+      Browse Feasts nearby
+    </button>
+    <button class="button button-block button-energized main-menu-button">
+      Browse Feasts anywhere
+    </button>
+
+    <button ng-show="!isLoggedIn()" ng-click="loginOauth('google')">Login</button>
+    <button ng-show="isLoggedIn()" ng-click="logout()">Logout</button>
+  </ion-content>
+</ion-view>

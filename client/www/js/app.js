@@ -23,16 +23,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       StatusBar.styleLightContent();
     }
   });
-  
+
   $rootScope.$on('$stateChangeStart', function (event, next) {
     Auth.isLoggedInAsync(function(loggedIn) {
       if (next.authenticate && !loggedIn) {
         event.preventDefault();
-        $location.path('/login');
+        $location.path('/');
       }
     });
   });
-  
+
 })
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -43,56 +43,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
+  .state('dash-out', {
+    url: '/',
+    templateUrl: 'templates/dash-out.html',
+    controller: 'DashCtrl'
   })
 
-  // Each tab has its own nav history stack:
-
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
-      }
-    }
-  })
-
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
+  .state('dash-in', {
+    url: '/loggedIn',
+    templateUrl: 'templates/dash-in.html'
   });
 
+  // .state('tab.chats', {
+  //   url: '/chats',
+  //   views: {
+  //     'tab-chats': {
+  //       templateUrl: 'templates/tab-chats.html',
+  //       controller: 'ChatsCtrl'
+  //     }
+  //   }
+  // })
+
+  // .state('tab.account', {
+  //   url: '/account',
+  //   views: {
+  //     'tab-account': {
+  //       templateUrl: 'templates/tab-account.html',
+  //       controller: 'AccountCtrl'
+  //     }
+  //   }
+  // });
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/');
 
   $httpProvider.interceptors.push('authInterceptor');
 
