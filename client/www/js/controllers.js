@@ -171,6 +171,6 @@ angular.module('starter.controllers', [])
    })
 
    $scope.ryanbullshit = function($event) {
-    debugger;
+    var coords = this.mapObject.xa($event.layerX, $event.layerY);
    }
 });
