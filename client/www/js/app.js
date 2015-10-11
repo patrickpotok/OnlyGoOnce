@@ -43,7 +43,7 @@ angular.module('starter', [
 
 })
 
-.config(function($stateProvider, $urlRouterProvider, $httpProvider,MapConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider, MapConfigProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -52,43 +52,51 @@ angular.module('starter', [
   $stateProvider
 
   .state('dash-out', {
+    cache: false,
     url: '/',
     templateUrl: 'templates/dash-out.html',
     controller: 'DashCtrl'
   })
 
   .state('dash-in', {
+    cache: false,
     url: '/loggedIn',
     templateUrl: 'templates/dash-in.html',
     controller: 'LoginCtrl'
   })
 
   .state('dash-settings', {
+    cache: false,
     url: '/settings',
     templateUrl: 'templates/dash-settings.html',
     //controller: 'SettingsCtrl'
   })
 
   .state('dash-restaurant-info', {
+    cache: false,
     url: '/restaurantInfo',
     templateUrl: 'templates/dash-restaurant-info.html',
-    controller: 'RestaurantCtrl'
+    controller: 'RestaurantCtrl',
+    params: {restaurant: null}
   })
 
   .state('dash-confirm', {
+    cache: false,
     url: '/eat',
     templateUrl: 'templates/dash-confirm.html',
     controller: 'ConfirmCtrl',
-    params : { restaurant: null, }
+    params: {restaurant: null}
   })
 
   .state('dash-browse-here', {
+    cache: false,
     url: '/browseHere',
     templateUrl: 'templates/dash-browse-here.html',
     controller: 'BrowseHereCtrl'
   })
 
   .state('dash-browse-any', {
+    cache: false,
     url: '/browseAny',
     templateUrl: 'templates/dash-browse-any.html',
     controller: 'BrowseAnyCtrl'
