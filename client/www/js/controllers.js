@@ -91,11 +91,12 @@ angular.module('starter.controllers', [])
   $scope.coords = {}
   $scope.restaurant = {}
   $scope.markers = {locations: []}
+  $scope.goAgain =false;
 
   $scope.saveGoAgain= function(){
     console.log($scope.goAgain);
     console.log($scope.restaurant)
-    ApiService.updateGoAgain($scope.restaurant.id)
+    ApiService.updateGoAgain($scope.restaurant.id, $scope.goAgain)
     .success(function(response){
       console.log(response)
     })
@@ -129,8 +130,10 @@ angular.module('starter.controllers', [])
         window: {
           templateUrl: 'development/templates/window.html'
         }
+
       }
     };
+    ApiService.postLogs($scope.restaurant.id)
   })
 
   });

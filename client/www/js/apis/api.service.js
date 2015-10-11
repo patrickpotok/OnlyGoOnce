@@ -15,7 +15,7 @@ function ApiService($http) {
     service.getAllRestaurants = function(){
       return $http.get(restaurantURL + 'get-all-restaurants');
     }
-    
+      
     service.pushHistory = function(restaurant_id, goAgain){
       return $http({
             method: 'POST',
@@ -25,10 +25,18 @@ function ApiService($http) {
         }); 
     }
     
+    service.postLogs = function(restaurant_id){
+      return $http({
+            method: 'POST',
+            url: historyURL + 'post-logs',
+            params : {restaurant_id: restaurant_id}
+        }); 
+    }
+    
     service.updateGoAgain = function(restaurant_id, goAgain){
       return $http({
             method: 'POST',
-            url: historyURL,
+            url: historyURL + 'go-again' ,
             params : {restaurant_id: restaurant_id,
                       goAgain: goAgain}
         }); 
