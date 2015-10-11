@@ -54,8 +54,9 @@ exports.index = function(req, res) {
   var latitude = req.query.latitude
   var longitude = req.query.longitude
   var number = parseInt(req.query.number);
-  var url = 'http://places.cit.api.here.com/places/v1/browse?at=' + req.query.latitude + ',' + req.query.longitude + '&app_id=evk3TrU4UcresAseG8Da&app_code=z4yYohROherMZ57eHTsQUg&pretty=true&cat=restaurant';
+  var url = 'http://places.cit.api.here.com/places/v1/browse?at=' + req.query.latitude + ',' + req.query.longitude + '&app_id=evk3TrU4UcresAseG8Da&app_code=z4yYohROherMZ57eHTsQUg&pretty=true&cat=restaurant&size=100';
   var includeGoAgain = req.query.includeGoAgain
+  console.log(url)
   http.get(url, function(response) {
     var str = '';
 
@@ -66,12 +67,12 @@ exports.index = function(req, res) {
       var result = JSON.parse(str);
       var result_list = []
       var filter = []
+      console.log(result.results.items.length)
       
 
       History.find({user:userId}, function (err, histories) {
           if(err) { return handleError(res, err); }
           var countFiltered = 0;
-          console.log(result)
           for(var i = 0; i < histories.length; i++){
               if( (includeGoAgain == "true") && (histories[i].goAgain == "true") ){
 
