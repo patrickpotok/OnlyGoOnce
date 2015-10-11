@@ -22,10 +22,14 @@
         <div class="col col-10"></div>
           <div class="col col-80">
             <div id="map" class="map-style"></div>
-            <map zoom="data.map.zoom" center="data.map.center" ></map>
+            <map ng-if="map.center.lat" zoom="map.zoom" center="map.center" ></map>
           </div>
         <div class="col col-10"></div>
       </div>
+
+
+      <br>
+      <br>
 
       <div class="row">
       <div class="col col-10"></div>

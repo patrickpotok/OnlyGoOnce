@@ -28,36 +28,26 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('RestaurantCtrl', function($scope, geolocation) {
 
+.controller('RestaurantCtrl', function($scope,geolocation) {
+  
+  
+  
+  $scope.coords = {}
+  
   geolocation.getLocation().then(function(data){
    $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
  });
 
- console.log($scope.coords)
-
- $scope.data = {}
-
- $scope.data.map= {
-   zoom : 14,
-   center : {
-     lng: -0.135559,
-     lat: 51.513872
-   }
- };
-
  $scope.$watch('coords', function(newValue, oldValue) {
    if (newValue){
-     //BuildMap
-     console.log(newValue)
-     $scope.data.map = {
-       zoom : 14,
-       center : {
+     $scope.map = {
+       zoom : 15,
+       center : { 
          lng: $scope.coords.long,
          lat: $scope.coords.lat
        }
      };
-     console.log($scope.data)
    }
  });
 

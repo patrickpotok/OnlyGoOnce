@@ -96,7 +96,7 @@ angular.module('starter', [
   MapConfigProvider.setOptions({
       appId: 'evk3TrU4UcresAseG8Da',
       appCode: 'z4yYohROherMZ57eHTsQUg',
-      libraries: 'ui,mapevents',
+      libraries: 'core,service,ui,mapevents',
       pixelRatio: 2, // Optional (Default: 1)
       pixelPerInch: 320 // Optional (Default: 72)
   });
