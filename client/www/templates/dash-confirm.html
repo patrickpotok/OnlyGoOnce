@@ -1,10 +1,11 @@
-<ion-view view-title="Restaurant" class="dashboard">
+<ion-view view-title="Restaurant Name" class="dashboard">
   <ion-content class="padding">
     <div class="row">
         <div class="col col-10"></div>
         <div class="col col-80">
             <!-- change the return on this when we use various buttons -->
-            <a class="button icon-left ion-chevron-left button-clear button-dark brown-colour" ui-sref="dash-in">   Back
+            <a class="button icon-left ion-chevron-left button-clear button-dark brown-colour hidden-button">
+              Back
             </a>
         </div>
         <div class="col col-10"></div>
@@ -27,20 +28,40 @@
         <div class="col col-10"></div>
       </div>
 
+      <br>
+      <br>
+      {{coords}}
       <div class="row">
-      <div class="col col-10"></div>
+        <div class="col col-10"></div>
         <div class="col">
-          <button class="button button-block button-balanced main-menu-button" ui-sref="dash-confirm">
-            <strong class="vanilla-colour">Go to Restaurant Name</strong>
+          <button class="button button-block button-dark main-menu-button">
+            <strong class="vanilla-colour">Request Uber? Estimate $ApiCall</strong>
           </button>
         </div>
         <div class="col col-10"></div>
       </div>
+
+      <div class="row">
+        <div class="col col-10"></div>
+        <div class="col">
+          <div class="item item-toggle">
+            <em class="brown-colour">Would you go again?</em>
+            <label class="toggle toggle-energized">
+              <input type="checkbox">
+              <div class="track">
+                <div class="handle"></div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="col col-10"></div>
+      </div>
+
       <div class="row">
       <div class="col col-10"></div>
         <div class="col">
-          <button class="button button-block button-assertive main-menu-button" style="margin-top:-5px" ui-sref="dash-in">
-            <strong class="vanilla-colour">Hide Stale Feast</strong>
+          <button class="button button-block button-assertive main-menu-button" ui-sref="dash-in">
+            <strong class="vanilla-colour">Back to Main Dashboard</strong>
           </button>
         </div>
         <div class="col col-10"></div>

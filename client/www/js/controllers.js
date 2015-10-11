@@ -28,35 +28,31 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('RestaurantCtrl', function($scope,geolocation) {
-  
+.controller('RestaurantCtrl', function($scope, geolocation) {
+
   geolocation.getLocation().then(function(data){
    $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
  });
- 
+
  console.log($scope.coords)
- 
+
  $scope.data = {}
- 
+
  $scope.data.map= {
    zoom : 14,
-   center : { 
+   center : {
      lng: -0.135559,
      lat: 51.513872
    }
  };
- 
 
- 
- 
- 
  $scope.$watch('coords', function(newValue, oldValue) {
    if (newValue){
      //BuildMap
      console.log(newValue)
      $scope.data.map = {
        zoom : 14,
-       center : { 
+       center : {
          lng: $scope.coords.long,
          lat: $scope.coords.lat
        }
@@ -64,10 +60,10 @@ angular.module('starter.controllers', [])
      console.log($scope.data)
    }
  });
-    
-  
 
-  
+
+
+
   /*
   $scope.setMap = function(map) {
     map.setCenter({
@@ -99,8 +95,8 @@ angular.module('starter.controllers', [])
 
   // Now use the map as required...
   $scope.setMap(map);
-  
-  
+
+
   */
   /*
   ApiService.getRestaurants(43.472285, -80.544858, 10)
@@ -108,79 +104,67 @@ angular.module('starter.controllers', [])
     console.log(response)
     var restaurant = response[1]
     var restaurantId = restaurant.external_id
-    
+
     ApiService.pushHistory(restaurantId, true)
     .success(function(response){
       console.log(response)
     })
-    
+
     ApiService.updateGoAgain(restaurantId)
     .success(function(response){
       console.log(response)
     })
-    
-    
-    
+
+
+
   })
-  
+
   ApiService.getAllRestaurants()
   .success(function(response){
     console.log(response)
   })
-  
+
   console.log(ApiService.get_restaurants())
   */
-  
-  
-  
-  
+
+
+
+
 })
 
 // .controller('BrowseHereCtrl', function($scope) {
 
 // })
 
-// .controller('BrowseAnyCtrl', function($scope) {
-
-// })
-
-// Code for getting long and lat for ionic, not sure how to interpret this
-.controller('GeoCtrl', function($cordovaGeolocation) {
-
-  var posOptions = {timeout: 10000, enableHighAccuracy: false};
-  $cordovaGeolocation
-    .getCurrentPosition(posOptions)
-    .then(function (position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
-    }, function(err) {
-      // error
-    });
-
-
-  var watchOptions = {
-    timeout : 3000,
-    enableHighAccuracy: false // may cause errors if true
-  };
-
-  var watch = $cordovaGeolocation.watchPosition(watchOptions);
-  watch.then(
-    null,
-    function(err) {
-      // error
-    },
-    function(position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
+.controller('BrowseAnyCtrl', function($scope, geolocation) {
+   geolocation.getLocation().then(function(data){
+    $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
   });
 
+  console.log($scope.coords)
 
-  watch.clearWatch();
-  // OR
-  $cordovaGeolocation.clearWatch(watch)
-    .then(function(result) {
-      // success
-      }, function (error) {
-      // error
+  $scope.data = {}
+
+  $scope.data.map= {
+    zoom : 14,
+    center : {
+      lng: -0.135559,
+      lat: 51.513872
+    }
+  };
+
+  $scope.$watch('coords', function(newValue, oldValue) {
+    if (newValue){
+      //BuildMap
+      console.log(newValue)
+      $scope.data.map = {
+        zoom : 14,
+        center : {
+          lng: $scope.coords.long,
+          lat: $scope.coords.lat
+        }
+      };
+      console.log($scope.data)
+    }
   });
 });

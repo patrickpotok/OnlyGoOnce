@@ -75,6 +75,12 @@ angular.module('starter', [
     controller: 'RestaurantCtrl'
   })
 
+  .state('dash-confirm', {
+    url: '/eat',
+    templateUrl: 'templates/dash-confirm.html',
+    //controller: 'ConfirmCtrl'
+  })
+
   .state('dash-browse-here', {
     url: '/browseHere',
     templateUrl: 'templates/dash-browse-here.html',
