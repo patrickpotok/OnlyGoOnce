@@ -31,7 +31,7 @@ angular.module('starter.controllers', [])
 
 .controller('RestaurantCtrl', function($scope,geolocation) {
   $scope.coords = {}
-  
+
   geolocation.getLocation().then(function(data){
    $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
   });
@@ -40,7 +40,7 @@ angular.module('starter.controllers', [])
      if (newValue){
        $scope.map = {
          zoom : 15,
-         center : { 
+         center : {
            lng: $scope.coords.long,
            lat: $scope.coords.lat
          }
@@ -122,7 +122,7 @@ angular.module('starter.controllers', [])
 
 .controller('ConfirmCtrl', function($scope, geolocation){
   $scope.coords = {}
-  
+
   geolocation.getLocation().then(function(data){
    $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
   });
@@ -131,7 +131,7 @@ angular.module('starter.controllers', [])
      if (newValue){
        $scope.map = {
          zoom : 15,
-         center : { 
+         center : {
            lng: $scope.coords.long,
            lat: $scope.coords.lat
          }
@@ -142,7 +142,7 @@ angular.module('starter.controllers', [])
 
 .controller('BrowseAnyCtrl', function($scope, geolocation) {
   $scope.coords = {}
-  
+
   geolocation.getLocation().then(function(data){
    $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
   });
@@ -151,7 +151,7 @@ angular.module('starter.controllers', [])
      if (newValue){
        $scope.map = {
          zoom : 15,
-         center : { 
+         center : {
            lng: $scope.coords.long,
            lat: $scope.coords.lat
          }

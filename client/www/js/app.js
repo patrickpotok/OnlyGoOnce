@@ -90,7 +90,7 @@ angular.module('starter', [
   .state('dash-browse-any', {
     url: '/browseAny',
     templateUrl: 'templates/dash-browse-any.html',
-    //controller: 'BrowseAnyCtrl'
+    controller: 'BrowseAnyCtrl'
   });
 
   MapConfigProvider.setOptions({

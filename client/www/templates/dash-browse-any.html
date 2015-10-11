@@ -1,0 +1,42 @@
+<ion-view view-title="Restaurant" class="dashboard">
+  <ion-content class="padding">
+    <div class="row">
+        <div class="col col-10"></div>
+        <div class="col col-80">
+            <!-- change the return on this when we use various buttons -->
+            <a class="button icon-left ion-chevron-left button-clear button-dark brown-colour" ui-sref="dash-in">   Back
+            </a>
+        </div>
+        <div class="col col-10"></div>
+    </div>
+
+    <div class="row">
+      <div class="col col-10"></div>
+        <div class="col col-80">
+          <h1 class="brown-colour">Select a Location on Map</h1>
+        </div>
+      <div class="col col-10"></div>
+    </div>
+
+      <div class="row">
+        <div class="col col-10"></div>
+          <div class="col col-80">
+            <div id="map" class="map-style"></div>
+            <map ng-if="map.center.lat" zoom="map.zoom" center="map.center" ></map>
+          </div>
+        <div class="col col-10"></div>
+      </div style="margin-bottom:20px">
+
+      <!--Ryan Fix-->
+      <div ng-hide="true" class="row">
+      <div class="col col-10"></div>
+        <div class="col">
+          <h4 class="brown-colour"><strong>Browse Feasts around address?</strong></h4>
+          <button class="button button-block button-balanced main-menu-button" ui-sref="dash-in">
+            <strong class="vanilla-colour">Confirm</strong>
+          </button>
+        </div>
+        <div class="col col-10"></div>
+      </div>
+  </ion-content>
+</ion-view>
