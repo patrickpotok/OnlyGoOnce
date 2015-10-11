@@ -66,11 +66,12 @@ exports.index = function(req, res) {
       var result = JSON.parse(str);
       var result_list = []
       var filter = []
+      
 
       History.find({user:userId}, function (err, histories) {
           if(err) { return handleError(res, err); }
           var countFiltered = 0;
-
+          console.log(result)
           for(var i = 0; i < histories.length; i++){
               if( (includeGoAgain == "true") && (histories[i].goAgain == "true") ){
 
@@ -98,6 +99,7 @@ exports.index = function(req, res) {
           // Store Restaurant information if need to. Make more efficient in future
           // Currently stores as we query
           for (var i = 0; i < result.results.items.length; i++){
+            console.log( result.results.items[i].id)
             Restaurant.update(
                 {external_id: result.results.items[i].id},
                 {
