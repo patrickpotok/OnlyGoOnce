@@ -19,9 +19,14 @@ angular.module('starter.controllers', [])
   };
 })
 
-// .controller('SettingsCtrl', function($scope, $location) {
-//   $location.path('/loggedIn');
-// })
+.controller('SettingsCtrl', function($scope, $location, Auth) {
+  $scope.user = Auth.getCurrentUser();
+  $scope.isLoggedIn = Auth.isLoggedIn;
+
+  $scope.logout = function(){
+    Auth.logout()
+  };
+})
 
 // .controller('RestaurantCtrl', function($scope) {
 
@@ -73,5 +78,5 @@ angular.module('starter.controllers', [])
       // success
       }, function (error) {
       // error
-    });
+  });
 });

@@ -64,7 +64,7 @@ angular.module('starter', [
   .state('dash-settings', {
     url: '/settings',
     templateUrl: 'templates/dash-settings.html',
-    //controller: 'SettingsCtrl'
+    controller: 'SettingsCtrl'
   })
 
   .state('dash-restaurant-info', {
