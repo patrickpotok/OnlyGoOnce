@@ -31,7 +31,7 @@ angular.module('starter.controllers', [])
 
 .controller('RestaurantCtrl', function($scope,geolocation, ApiService, $window, $stateParams) {
     console.log("Restaurant")
-  ApiService.invalidateAll()
+  //ApiService.invalidateAll()
   $scope.back = function(){
     $window.history.back();
   }
@@ -201,6 +201,7 @@ angular.module('starter.controllers', [])
       }
     };
     ApiService.postLogs($scope.restaurant.id)
+    console.log("PostLogs")
   })
 
   });
