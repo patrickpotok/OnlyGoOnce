@@ -80,9 +80,11 @@ exports.index = function(req, res) {
                 countFiltered++;
               }
           }
+          var result_index = 0;
           for(var i = 0; i < result.results.items.length; i++){
             if(filter.indexOf(result.results.items[i].id) == -1){ //Not in filter
-              result_list[i] = result.results.items[i];
+              result_list[result_index] = result.results.items[i];
+              result_index++;
             }
           }
 
