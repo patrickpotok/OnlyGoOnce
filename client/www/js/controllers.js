@@ -46,9 +46,6 @@ angular.module('starter.controllers', [])
   });
   var defaultLayers = platform.createDefaultLayers();
 
-.controller('RestaurantCtrl', function($scope) {
-
-
   //Step 2: initialize a map  - not specificing a location will give a whole world view.
   var map = new H.Map(document.getElementById('map'), defaultLayers.normal.map);
 
