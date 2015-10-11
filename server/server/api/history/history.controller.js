@@ -12,15 +12,6 @@ exports.index = function(req, res) {
   });
 };
 
-// Creates a new thing in the DB.
-exports.create = function(req, res) {
-  History.create(req.body, function(err, history) {
-    if(err) { return handleError(res, err); }
-    console.log(history)
-    return res.status(201).json(history);
-  });
-};
-
 function handleError(res, err) {
   return res.status(500).send(err);
 }
@@ -66,8 +57,9 @@ exports.updateGoAgain = function(req, res) {
 
       }
       else {
-        History.update( { restaurant_id:restaurant_id, user: req.user},
-                        { goAgain: req.body.goAgain },
+        var toBoolean = (req.body.goAgain === "true");
+        History.update( { restaurant_id:restaurant_id, user: req.user },
+                        { goAgain: toBoolean },
                         function (err, histories)
                         {
                               if(err) { return handleError(res, err); }
@@ -75,5 +67,14 @@ exports.updateGoAgain = function(req, res) {
                         });
       }
     });
+  });
+}
+
+exports.invalidate = function(req, res){
+  History.remove( { user: req.user },
+  function (err, histories)
+  {
+      if(err) { return handleError(res, err); }
+      return res.status(200).json(histories);
   });
 }

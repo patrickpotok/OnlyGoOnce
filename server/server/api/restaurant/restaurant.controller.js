@@ -22,7 +22,6 @@ exports.index = function(req, res) {
     response.on('data', function (chunk) {
       str += chunk;
     });
-    // TODO: FILTER by previous(CROSS CHECK WITH HISTORY MODEL)
     response.on('end', function () {
       var result = JSON.parse(str);
       var result_list = []
