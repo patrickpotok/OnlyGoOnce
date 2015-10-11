@@ -1,4 +1,4 @@
-<ion-view view-title="Restaurant" class="dashboard">
+<ion-view view-title="Browse Feasts Anywhere" class="dashboard">
   <ion-content class="padding">
     <div class="row">
         <div class="col col-10"></div>
@@ -22,7 +22,7 @@
         <div class="col col-10"></div>
           <div class="col col-80">
             <div id="map" class="map-style"></div>
-            <map ng-if="map.center.lat" zoom="map.zoom" center="map.center" ></map>
+            <map ng-if="map.center.lat" ng-click="ryanbullshit($event)" zoom="map.zoom" center="map.center" ></map>
           </div>
         <div class="col col-10"></div>
       </div style="margin-bottom:20px">

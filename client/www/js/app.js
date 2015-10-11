@@ -102,8 +102,6 @@ angular.module('starter', [
       pixelPerInch: 320 // Optional (Default: 72)
   });
 
-
-
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');
 
