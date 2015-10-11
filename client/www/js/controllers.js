@@ -46,6 +46,9 @@ angular.module('starter.controllers', [])
   });
   var defaultLayers = platform.createDefaultLayers();
 
+.controller('RestaurantCtrl', function($scope) {
+
+
   //Step 2: initialize a map  - not specificing a location will give a whole world view.
   var map = new H.Map(document.getElementById('map'), defaultLayers.normal.map);
 
@@ -59,6 +62,41 @@ angular.module('starter.controllers', [])
 
   // Now use the map as required...
   setMap(map);
+  
+  
+  
+  /*
+  ApiService.getRestaurants(43.472285, -80.544858, 10)
+  .success(function(response){
+    console.log(response)
+    var restaurant = response[1]
+    var restaurantId = restaurant.external_id
+    
+    ApiService.pushHistory(restaurantId, true)
+    .success(function(response){
+      console.log(response)
+    })
+    
+    ApiService.updateGoAgain(restaurantId)
+    .success(function(response){
+      console.log(response)
+    })
+    
+    
+    
+  })
+  
+  ApiService.getAllRestaurants()
+  .success(function(response){
+    console.log(response)
+  })
+  
+  console.log(ApiService.get_restaurants())
+  */
+  
+  
+  
+  
 })
 
 // .controller('BrowseHereCtrl', function($scope) {

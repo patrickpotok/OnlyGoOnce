@@ -16,7 +16,6 @@ exports.index = function(req, res) {
 exports.create = function(req, res) {
   History.create(req.body, function(err, history) {
     if(err) { return handleError(res, err); }
-    console.log(history)
     return res.status(201).json(history);
   });
 };

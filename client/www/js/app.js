@@ -11,7 +11,8 @@ angular.module('starter', [
   'starter.services',
   'ngCookies',
   'ngResource',
-  'ngSanitize'
+  'ngSanitize',
+  
 ])
 
 .run(function($ionicPlatform, $rootScope, $location, Auth) {
@@ -64,13 +65,13 @@ angular.module('starter', [
   .state('dash-settings', {
     url: '/settings',
     templateUrl: 'templates/dash-settings.html',
-    controller: 'SettingsCtrl'
+    //controller: 'SettingsCtrl'
   })
 
   .state('dash-restaurant-info', {
     url: '/restaurantInfo',
     templateUrl: 'templates/dash-restaurant-info.html',
-    //controller: 'RestaurantCtrl'
+    controller: 'RestaurantCtrl'
   })
 
   .state('dash-browse-here', {
