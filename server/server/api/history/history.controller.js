@@ -18,7 +18,6 @@ function handleError(res, err) {
 
 exports.postLogs = function(req, res) {
   var restaurant_id = req.query.restaurant_id;
-  console.log(req)
   Restaurant.find( { external_id : restaurant_id } ,function (err, restaurant) {
     if( err || !restaurant.length) {
         err = err || "No restaurant found with that id";

@@ -29,11 +29,20 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('RestaurantCtrl', function($scope,geolocation, ApiService) {
-
+.controller('RestaurantCtrl', function($scope,geolocation, ApiService, $window) {
+  //ApiService.invalidateAll()
+  $scope.back = function(){
+    $window.history.back();
+  }
+  
   $scope.coords = {}
   $scope.restaurant = {}
+
   $scope.markers = {locations: []}
+
+  $scope.getParamsForState = function(){
+    return {'restaurant' : $scope.restaurant}
+  }
 
   geolocation.getLocation().then(function(data){
    $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
@@ -41,9 +50,7 @@ angular.module('starter.controllers', [])
    console.log($scope.coords)
     ApiService.getRestaurants(data.coords.latitude, data.coords.longitude, 1)
     .success(function(response){
-      console.log(response);
       $scope.restaurant = response[0]
-      console.log($scope.restaurant)
 
       $scope.markers = {
       locations: [
@@ -55,6 +62,18 @@ angular.module('starter.controllers', [])
           icon: {
             window: {
               template: $scope.restaurant.title
+            }
+          },
+          id: 2
+        },
+        {
+          coordinates: {
+            lat: data.coords.latitude,
+            lng: data.coords.longitude
+          },
+          icon: {
+            window: {
+              template: "You are here!"
             }
           },
           id: 2
@@ -83,19 +102,41 @@ angular.module('starter.controllers', [])
    })
 })
 
-// .controller('BrowseHereCtrl', function($scope) {
+.controller('BrowseHereCtrl', function($scope, geolocation, ApiService) {
+  
+  $scope.restaurants = []
+  
+  $scope.remove_br = function(address){
+    return address.replace("<br/>", ", ")
+  }
+  
+  geolocation.getLocation().then(function(data){
+   $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
+    ApiService.getRestaurants(data.coords.latitude, data.coords.longitude, 5)
+    .success(function(response){
+      console.log(response)
+      for (var i = 0; i < 5; i++){
+        $scope.restaurants.push(response[i])
+      }})
+    });
+})
 
-// })
-
-.controller('ConfirmCtrl', function($scope, geolocation, ApiService){
+.controller('ConfirmCtrl', function($scope, geolocation, ApiService, $stateParams, $window){
   $scope.coords = {}
   $scope.restaurant = {}
   $scope.markers = {locations: []}
   $scope.goAgain =false;
-
+  
+  $scope.back = function(){
+    console.log($window.history)
+    $window.history.back();
+  }
+  
+  console.log($stateParams)
+  
+  $scope.restaurant = $stateParams.restaurant
+  
   $scope.saveGoAgain= function(){
-    console.log($scope.goAgain);
-    console.log($scope.restaurant)
     ApiService.updateGoAgain($scope.restaurant.id, $scope.goAgain)
     .success(function(response){
       console.log(response)
@@ -107,9 +148,7 @@ angular.module('starter.controllers', [])
 
     ApiService.getRestaurants(data.coords.latitude, data.coords.longitude, 1)
     .success(function(response){
-      console.log(response);
-      $scope.restaurant = response[0]
-      console.log($scope.restaurant)
+      $scope.restaurant = $stateParams.restaurant || response[0]
 
       $scope.markers = {
       locations: [
@@ -121,6 +160,18 @@ angular.module('starter.controllers', [])
           icon: {
             window: {
               template: $scope.restaurant.title
+            }
+          },
+          id: 2
+        },
+        {
+          coordinates: {
+            lat: data.coords.latitude,
+            lng: data.coords.longitude
+          },
+          icon: {
+            window: {
+              template: "You are here!"
             }
           },
           id: 2

@@ -79,13 +79,13 @@ angular.module('starter', [
     url: '/eat',
     templateUrl: 'templates/dash-confirm.html',
     controller: 'ConfirmCtrl',
-    params : { restaurant: null, },
+    params : { restaurant: null, }
   })
 
   .state('dash-browse-here', {
     url: '/browseHere',
     templateUrl: 'templates/dash-browse-here.html',
-    //controller: 'BrowseHereCtrl'
+    controller: 'BrowseHereCtrl'
   })
 
   .state('dash-browse-any', {
