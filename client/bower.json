@@ -6,5 +6,8 @@
     "angular-resource": ">=1.2.*",
     "angular-cookies": ">=1.2.*",
     "angular-sanitize": ">=1.2.*"
+  },
+  "dependencies": {
+    "angularjs-geolocation": "~0.1.1"
   }
 }

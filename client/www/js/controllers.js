@@ -28,7 +28,23 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('RestaurantCtrl', function($scope) {
+.controller('RestaurantCtrl', function($scope,geolocation) {
+  
+  geolocation.getLocation().then(function(data){
+   $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
+ });
+ 
+ console.log($scope.coords)
+ 
+ $scope.$watch('coords', function(newValue, oldValue) {
+   
+   if (newValue){
+     //BuildMap
+     console.log(newValue)
+   }
+ });
+    
+  
   $scope.setMap = function(map) {
     map.setCenter({
       lat:52.5159,

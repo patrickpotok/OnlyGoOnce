@@ -12,6 +12,7 @@ angular.module('starter', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'geolocation'
   
 ])
 
