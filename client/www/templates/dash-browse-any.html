@@ -27,12 +27,11 @@
         <div class="col col-10"></div>
       </div style="margin-bottom:20px">
 
-      <!--Ryan Fix-->
-      <div ng-hide="true" class="row">
+      <div ng-if="marker" class="row">
       <div class="col col-10"></div>
         <div class="col">
-          <h4 class="brown-colour"><strong>Browse Feasts around address?</strong></h4>
-          <button class="button button-block button-balanced main-menu-button" ui-sref="dash-in">
+          <h4 class="brown-colour"><strong>Browse around this point?</strong></h4>
+          <button class="button button-block button-balanced main-menu-button" ui-sref="dash-browse-here(getCoords())">
             <strong class="vanilla-colour">Confirm</strong>
           </button>
         </div>

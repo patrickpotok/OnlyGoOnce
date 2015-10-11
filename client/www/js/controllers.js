@@ -108,8 +108,10 @@ angular.module('starter.controllers', [])
    })
 })
 
-.controller('BrowseHereCtrl', function($scope, geolocation, ApiService, $window) {
+.controller('BrowseHereCtrl', function($scope, geolocation, ApiService, $window, $stateParams) {
   console.log("Browse")
+  console.log($stateParams)
+  $scope.coords = $stateParams.coords;
   $scope.restaurants = []
 
   $scope.back = function(){
@@ -125,8 +127,9 @@ angular.module('starter.controllers', [])
   }
 
   geolocation.getLocation().then(function(data){
-   $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
-    ApiService.getRestaurants(data.coords.latitude, data.coords.longitude, 5)
+   $scope.coords =  $stateParams.coords || {lat:data.coords.latitude, long:data.coords.longitude};
+   console.log($scope.coords)
+    ApiService.getRestaurants($scope.coords.lat, $scope.coords.long, 5)
     .success(function(response){
       for (var i = 0; i < 5; i++){
         $scope.restaurants.push(response[i])
@@ -225,12 +228,18 @@ angular.module('starter.controllers', [])
 
 .controller('BrowseAnyCtrl', function($scope, geolocation, $window) {
   $scope.coords = {}
+  $scope.coordsChosen = {}
 
   $scope.back = function(){
     $window.history.back();
   }
 
-
+  $scope.getCoords = function(){
+    var result = {}
+    result.coords = {lat: $scope.coordsChosen.lat, long: $scope.coordsChosen.lng} || $scope.coords
+    return result
+  }
+  
   geolocation.getLocation().then(function(data){
    $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
   });
@@ -246,11 +255,15 @@ angular.module('starter.controllers', [])
        };
      }
    })
+   $scope.marker = undefined
 
    $scope.ryanbullshit = function($event) {
-    var coords = this.mapObject.xa($event.layerX, $event.layerY);
-    debugger;
-     var berlinMarker = new H.map.Marker({lat:coords.lat, lng:coords.lng});
-     this.mapObject.addObject(berlinMarker);
+    $scope.coordsChosen = this.mapObject.xa($event.layerX, $event.layerY);
+    var old_marker = $scope.marker
+    if (old_marker){
+      this.mapObject.removeObject(old_marker)
+    }
+    $scope.marker = new H.map.Marker({lat:$scope.coordsChosen.lat, lng:$scope.coordsChosen.lng});
+    this.mapObject.addObject($scope.marker);
    }
 });

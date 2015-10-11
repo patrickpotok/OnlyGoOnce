@@ -92,7 +92,8 @@ angular.module('starter', [
     cache: false,
     url: '/browseHere',
     templateUrl: 'templates/dash-browse-here.html',
-    controller: 'BrowseHereCtrl'
+    controller: 'BrowseHereCtrl',
+    params: {coords: null}
   })
 
   .state('dash-browse-any', {
