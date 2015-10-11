@@ -35,11 +35,11 @@ angular.module('starter.controllers', [])
   $scope.back = function(){
     $window.history.back();
   }
-  
+
   $scope.rejectHistory = function(){
-      ApiService.postLogs($scope.restaurant.id) 
+      ApiService.postLogs($scope.restaurant.id)
   }
-  
+
   $scope.coords = {}
   $scope.restaurant = {}
   $scope.restaurant = $stateParams.restaurant;
@@ -111,19 +111,19 @@ angular.module('starter.controllers', [])
 .controller('BrowseHereCtrl', function($scope, geolocation, ApiService, $window) {
   console.log("Browse")
   $scope.restaurants = []
-  
+
   $scope.back = function(){
     $window.history.back();
   }
-  
+
   $scope.getParamsForState = function(index){
     return {'restaurant' : $scope.restaurants[index]}
   }
-  
+
   $scope.remove_br = function(address){
     return address.replace("<br/>", ", ")
   }
-  
+
   geolocation.getLocation().then(function(data){
    $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
     ApiService.getRestaurants(data.coords.latitude, data.coords.longitude, 5)
@@ -140,22 +140,22 @@ angular.module('starter.controllers', [])
   $scope.restaurant = {}
   $scope.markers = {locations: []}
   $scope.goAgain =false;
-  
+
   $scope.back = function(){
     $window.history.back();
   }
-  
+
   $scope.getParamsForState = function(){
     return {'restaurant' : $scope.restaurant}
   }
-  
+
   $scope.back = function(){
     console.log($window.history)
     $window.history.back();
   }
-  
+
   $scope.restaurant = $stateParams.restaurant
-  
+
   $scope.saveGoAgain= function(){
     ApiService.updateGoAgain($scope.restaurant.id, $scope.goAgain)
     .success(function(response){
@@ -225,12 +225,12 @@ angular.module('starter.controllers', [])
 
 .controller('BrowseAnyCtrl', function($scope, geolocation, $window) {
   $scope.coords = {}
-  
+
   $scope.back = function(){
     $window.history.back();
   }
-  
-  
+
+
   geolocation.getLocation().then(function(data){
    $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
   });
@@ -249,5 +249,8 @@ angular.module('starter.controllers', [])
 
    $scope.ryanbullshit = function($event) {
     var coords = this.mapObject.xa($event.layerX, $event.layerY);
+    debugger;
+     var berlinMarker = new H.map.Marker({lat:coords.lat, lng:coords.lng});
+     this.mapObject.addObject(berlinMarker);
    }
 });
