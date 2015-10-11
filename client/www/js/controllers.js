@@ -36,6 +36,10 @@ angular.module('starter.controllers', [])
     $window.history.back();
   }
   
+  $scope.rejectHistory = function(){
+      ApiService.postLogs($scope.restaurant.id) 
+  }
+  
   $scope.coords = {}
   $scope.restaurant = {}
   $scope.restaurant = $stateParams.restaurant;
