@@ -36,15 +36,39 @@ angular.module('starter.controllers', [])
  
  console.log($scope.coords)
  
+ $scope.data = {}
+ 
+ $scope.data.map= {
+   zoom : 14,
+   center : { 
+     lng: -0.135559,
+     lat: 51.513872
+   }
+ };
+ 
+
+ 
+ 
+ 
  $scope.$watch('coords', function(newValue, oldValue) {
-   
    if (newValue){
      //BuildMap
      console.log(newValue)
+     $scope.data.map = {
+       zoom : 14,
+       center : { 
+         lng: $scope.coords.long,
+         lat: $scope.coords.lat
+       }
+     };
+     console.log($scope.data)
    }
  });
     
   
+
+  
+  /*
   $scope.setMap = function(map) {
     map.setCenter({
       lat:52.5159,
@@ -77,7 +101,7 @@ angular.module('starter.controllers', [])
   $scope.setMap(map);
   
   
-  
+  */
   /*
   ApiService.getRestaurants(43.472285, -80.544858, 10)
   .success(function(response){

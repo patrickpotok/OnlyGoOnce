@@ -8,6 +8,7 @@
     "angular-sanitize": ">=1.2.*"
   },
   "dependencies": {
-    "angularjs-geolocation": "~0.1.1"
+    "angularjs-geolocation": "~0.1.1",
+    "angular-here-maps": "~1.3.1"
   }
 }
