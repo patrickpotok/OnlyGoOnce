@@ -42,6 +42,12 @@ function ApiService($http) {
         }); 
     }
     
+    service.invalidateAll = function(){
+      return $http({
+            method: 'POST',
+            url: historyURL + 'invalidate-all'
+        }); 
+    }
     
     return service
 
