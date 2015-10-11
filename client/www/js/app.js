@@ -11,7 +11,9 @@ angular.module('starter', [
   'starter.services',
   'ngCookies',
   'ngResource',
-  'ngSanitize'
+  'ngSanitize',
+  'geolocation',
+  'angular-here-maps'
 ])
 
 .run(function($ionicPlatform, $rootScope, $location, Auth) {
@@ -41,7 +43,7 @@ angular.module('starter', [
 
 })
 
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider,MapConfigProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -70,7 +72,13 @@ angular.module('starter', [
   .state('dash-restaurant-info', {
     url: '/restaurantInfo',
     templateUrl: 'templates/dash-restaurant-info.html',
-    //controller: 'RestaurantCtrl'
+    controller: 'RestaurantCtrl'
+  })
+
+  .state('dash-confirm', {
+    url: '/eat',
+    templateUrl: 'templates/dash-confirm.html',
+    controller: 'ConfirmCtrl'
   })
 
   .state('dash-browse-here', {
@@ -84,6 +92,16 @@ angular.module('starter', [
     templateUrl: 'templates/dash-browse-any.html',
     //controller: 'BrowseAnyCtrl'
   });
+
+  MapConfigProvider.setOptions({
+      appId: 'evk3TrU4UcresAseG8Da',
+      appCode: 'z4yYohROherMZ57eHTsQUg',
+      libraries: 'core,service,ui,mapevents',
+      pixelRatio: 2, // Optional (Default: 1)
+      pixelPerInch: 320 // Optional (Default: 72)
+  });
+
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');

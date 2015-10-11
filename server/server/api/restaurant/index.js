@@ -6,7 +6,7 @@ var controller = require('./restaurant.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.get('/get-logs', controller.getLogs);
+router.get('/get-logs', controller.getLogs); // We currently do not use these
 router.get('/get-all-restaurants', controller.getRestaurants);
 
 //router.get('/:id', controller.show);

@@ -1,20 +1,24 @@
 body {
-    background-color: #FA8072;
+    background-color: #FCFBE3;
 }
 
 .dashboard {
-    background-color: #FA8072;
+    background-color: #FCFBE3;
 }
 
 .main-menu-button {
     max-width: 100%;
 }
 
-.black-text {
-    color: #000000 !important;
+.vanilla-colour {
+    color: #FCFBE3 !important;
 }
 
-.ion-gear-a {
+.brown-colour {
+    color: #524B47 !important;
+}
+
+.right-float {
     float: right;
 }
 
@@ -29,3 +33,16 @@ body {
     visibility: hidden !important;
     cursor: default;
 }
+
+.toggle-style {
+    color: yellow;
+}
+
+.logged-in {
+    display: inline-block !important;
+    float: right !important;
+    margin-top: 13px;
+    padding-right: 10px;
+}
+
+.here-map{ height: 400px; }
