@@ -25,11 +25,12 @@ function ApiService($http) {
         }); 
     }
     
-    service.updateGoAgain = function(restaurant_id){
+    service.updateGoAgain = function(restaurant_id, goAgain){
       return $http({
             method: 'POST',
             url: historyURL,
-            params : {restaurant_id: restaurant_id}
+            params : {restaurant_id: restaurant_id,
+                      goAgain: goAgain}
         }); 
     }
     
