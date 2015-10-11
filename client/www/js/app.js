@@ -85,7 +85,7 @@ angular.module('starter', [
   .state('dash-browse-here', {
     url: '/browseHere',
     templateUrl: 'templates/dash-browse-here.html',
-    //controller: 'BrowseHereCtrl'
+    controller: 'BrowseHereCtrl'
   })
 
   .state('dash-browse-any', {

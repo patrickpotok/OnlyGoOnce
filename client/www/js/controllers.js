@@ -102,9 +102,24 @@ angular.module('starter.controllers', [])
    })
 })
 
-// .controller('BrowseHereCtrl', function($scope) {
-
-// })
+.controller('BrowseHereCtrl', function($scope, geolocation, ApiService) {
+  
+  $scope.restaurants = []
+  
+  $scope.remove_br = function(address){
+    return address.replace("<br/>", ", ")
+  }
+  
+  geolocation.getLocation().then(function(data){
+   $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
+    ApiService.getRestaurants(data.coords.latitude, data.coords.longitude, 5)
+    .success(function(response){
+      console.log(response)
+      for (var i = 0; i < 5; i++){
+        $scope.restaurants.push(response[i])
+      }})
+    });
+})
 
 .controller('ConfirmCtrl', function($scope, geolocation, ApiService, $stateParams, $window){
   $scope.coords = {}
