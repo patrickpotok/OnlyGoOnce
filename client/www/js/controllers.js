@@ -58,7 +58,7 @@ angular.module('starter.controllers', [])
   var ui = H.ui.UI.createDefault(map, defaultLayers);
 
   // Now use the map as required...
-  setMap(map);
+  $scope.setMap(map);
   
   
   
