@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col col-10"></div>
           <div class="col col-80">
-            <h1 class="brown-colour">Restaurant Name</h1>
+            <h1 class="brown-colour">{{restaurant.title}}</h1>
           </div>
         <div class="col col-10"></div>
       </div>
@@ -12,7 +12,9 @@
         <div class="col col-10"></div>
           <div class="col col-80">
             <div id="map" class="map-style"></div>
-            <map ng-if="map.center.lat" zoom="map.zoom" center="map.center" ></map>
+            <map ng-if="map.center.lat && markers.locations.length" zoom="map.zoom" center="map.center" >
+              <markers locations="markers.locations" icon="markers.icon"></markers>
+            </map>
           </div>
         <div class="col col-10"></div>
       </div>
@@ -33,7 +35,7 @@
           <div class="item item-toggle">
             <strong class="brown-colour">Would you go again?</strong>
             <label class="toggle toggle-energized">
-              <input type="checkbox">
+              <input ng-model="goAgain" type="checkbox">
               <div class="track">
                 <div class="handle"></div>
               </div>
@@ -46,7 +48,8 @@
       <div class="row">
       <div class="col col-10"></div>
         <div class="col">
-          <button class="button button-block button-assertive main-menu-button" style="margin-top:2px" ui-sref="dash-in">
+          <button class="button button-block button-assertive main-menu-button" style="margin-top:2px"
+          ui-sref="dash-in" ng-click="saveGoAgain()">
             <strong class="vanilla-colour">Back to Main Dashboard</strong>
           </button>
         </div>
