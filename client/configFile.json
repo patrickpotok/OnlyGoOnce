@@ -6,7 +6,7 @@
   },
   "production": {
     "EnvironmentConfig": {
-      "api": "http://www.onlygoonce.com"
+      "api": "http://www.onlygoonce.com:9000"
     }
   }
 }
