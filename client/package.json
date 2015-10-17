@@ -1,7 +1,7 @@
 {
-  "name": "findafeast",
+  "name": "FreshFeast",
   "version": "1.0.0",
-  "description": "FindAFeast: An Ionic project",
+  "description": "FreshFeast: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
