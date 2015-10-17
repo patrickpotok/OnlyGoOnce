@@ -44,7 +44,7 @@ angular.module('starter', [
        //event.preventDefault();
        $location.path('/');
      }
-     else{
+     else if ($location.path() == '/'){
        //event.preventDefault();
        $location.path('/loggedIn');
      }
