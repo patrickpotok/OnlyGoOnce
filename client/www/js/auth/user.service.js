@@ -2,7 +2,7 @@
 
 angular.module('starter')
   .factory('User', function ($resource) {
-    return $resource('/api/users/:id/:controller', {
+    return $resource('http://windask.ngrok.com/api/users/:id/:controller', {
       id: '@_id'
     },
     {

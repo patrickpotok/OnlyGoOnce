@@ -3,7 +3,8 @@
 angular.module('starter')
   .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
     var currentUser = {};
-    if($cookieStore.get('token')) {
+    if(window.localStorage.token || $cookieStore.get('token')) {
+      console.log("Token!")
       currentUser = User.get();
     }
 
@@ -46,6 +47,7 @@ angular.module('starter')
        */
       logout: function() {
         $cookieStore.remove('token');
+        window.localStorage.removeItem('token');
         currentUser = {};
         $location.path('/');
       },
@@ -128,6 +130,12 @@ angular.module('starter')
         }
       },
 
+      getUser: function(){
+        if(window.localStorage.token || $cookieStore.get('token')) {
+          currentUser = User.get();
+        }
+      },
+
       /**
        * Check if a user is an admin
        *
@@ -141,7 +149,8 @@ angular.module('starter')
        * Get auth token
        */
       getToken: function() {
-        return $cookieStore.get('token');
+        return window.localStorage.token || $cookieStore.get('token');
+        
       }
     };
   });

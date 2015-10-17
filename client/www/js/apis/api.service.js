@@ -3,10 +3,11 @@
 angular.module('starter')
   .factory('ApiService', ApiService);
   
-function ApiService($http) {
+function ApiService($http, EnvironmentConfig) {
+      console.log(EnvironmentConfig)
     var service = {},
-        restaurantURL= '/api/restaurant/',
-       historyURL= '/api/history/';
+       restaurantURL = EnvironmentConfig.api + '/api/restaurant/',
+       historyURL = EnvironmentConfig.api + '/api/history/';
 
     service.getRestaurants =  function(latitude, longitude, number){
       return $http.get(restaurantURL + '?latitude='+ latitude + '&longitude=' + longitude + '&number=' + number);

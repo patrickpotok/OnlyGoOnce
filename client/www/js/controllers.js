@@ -1,26 +1,46 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $window, Auth) {
+.controller('DashCtrl', function($scope, $window, Auth, $location, EnvironmentConfig) {
   $scope.isLoggedIn = Auth.isLoggedIn;
-
+    $scope.token = window.localStorage.token;
   $scope.loginOauth = function(provider) {
-    // Window open for Mobile
-    //  window.open('http://localhost:9000/auth/' + provider, '_system', 'location=yes');
-    $window.location.href = '/auth/' + provider;
+    
+    // Android Flow
+    if (ionic.Platform.isAndroid()){
+      var popupWindow =  cordova.InAppBrowser.open(EnvironmentConfig.api + '/auth/'+ provider, '_blank', 'location=no,toolbar=no');
+      popupWindow.addEventListener('loadstart', function(event){
+        var hasToken = event.url.indexOf('?token=');
+        if (hasToken > -1){
+          token = event.url.match('token=(.*)')[1];
+          popupWindow.close();
+          window.localStorage.token = token;
+          Auth.getUser();
+          $location.path('/loggedIn');
+        }
+      })
+    }
+    // Web Flow
+    else{
+      $window.location.href = EnvironmentConfig.api + '/auth/' + provider;
+    }
   };
 })
 
 .controller('LoginCtrl', function($scope, Auth) {
   $scope.user = Auth.getCurrentUser();
   $scope.isLoggedIn = Auth.isLoggedIn;
+})
 
-  $scope.logout = function(){
-    Auth.logout()
-  };
+.controller('AuthCtrl', function($scope, $location, $window, Auth) {
+  window.localStorage.token = $location.search().token
+  console.log(window.localStorage.token);
+  Auth.getUser();
+  $location.path('/loggedIn');
 })
 
 .controller('SettingsCtrl', function($scope, $location, Auth) {
   $scope.user = Auth.getCurrentUser();
+  console.log($scope.user)
   $scope.isLoggedIn = Auth.isLoggedIn;
 
   $scope.logout = function(){

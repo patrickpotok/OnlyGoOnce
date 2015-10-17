@@ -6,12 +6,13 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var gulpNgConfig = require('gulp-ng-config');
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'config']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -25,6 +26,12 @@ gulp.task('sass', function(done) {
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
+});
+
+gulp.task('config', function () {
+  gulp.src('configFile.json')
+  .pipe(gulpNgConfig('freshFeast.config', { environment: (process.env.CLIENT_NODE_ENV || 'development')}))
+  .pipe(gulp.dest('./www/js'))
 });
 
 gulp.task('watch', function() {

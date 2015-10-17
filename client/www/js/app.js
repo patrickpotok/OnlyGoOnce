@@ -13,7 +13,8 @@ angular.module('starter', [
   'ngResource',
   'ngSanitize',
   'geolocation',
-  'angular-here-maps'
+  'angular-here-maps',
+  'freshFeast.config'
 ])
 
 .run(function($ionicPlatform, $rootScope, $location, Auth) {
@@ -30,17 +31,25 @@ angular.module('starter', [
       StatusBar.styleLightContent();
     }
   });
+  
+  console.log(ionic.Platform.isWebView())
+  console.log(ionic.Platform.isAndroid())
 
   $rootScope.$on('$stateChangeStart', function (event, next) {
     Auth.isLoggedInAsync(function(loggedIn) {
-      if (loggedIn) { $location.path('/loggedIn'); }
-      if (next.authenticate && !loggedIn) {
-        event.preventDefault();
-        $location.path('/');
-      }
+      console.log("StateChange")
+      console.log(loggedIn)
+
+     if (!loggedIn) {
+       //event.preventDefault();
+       $location.path('/');
+     }
+     else{
+       //event.preventDefault();
+       $location.path('/loggedIn');
+     }
     });
   });
-
 })
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider, MapConfigProvider) {
@@ -101,7 +110,14 @@ angular.module('starter', [
     url: '/browseAny',
     templateUrl: 'templates/dash-browse-any.html',
     controller: 'BrowseAnyCtrl'
-  });
+  })
+  
+    .state('auth', {
+      cache: false,
+      url: '/authToken',
+      controller: 'AuthCtrl'
+    });
+
 
   MapConfigProvider.setOptions({
       appId: 'evk3TrU4UcresAseG8Da',
@@ -123,8 +139,9 @@ angular.module('starter', [
     // Add authorization token to headers
     request: function (config) {
       config.headers = config.headers || {};
-      if ($cookieStore.get('token')) {
-        config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
+      if (window.localStorage.token || $cookieStore.get('token')) {
+        config.headers.Authorization = 'Bearer ' + (window.localStorage.token || $cookieStore.get('token'));
+        console.log(config.headers.Authorization)
       }
       return config;
     },
@@ -136,6 +153,7 @@ angular.module('starter', [
         $location.path('/');
         // remove any stale tokens
         $cookieStore.remove('token');
+        window.localStorage.removeItem('token');
         return $q.reject(response);
       }
       else {
