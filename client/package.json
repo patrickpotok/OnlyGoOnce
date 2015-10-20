@@ -1,7 +1,7 @@
 {
-  "name": "FreshFeast",
+  "name": "OnlyGoOnce",
   "version": "1.0.0",
-  "description": "FreshFeast: An Ionic project",
+  "description": "OnlyGoOnce: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",

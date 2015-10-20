@@ -1,4 +1,4 @@
-# FreshFeast
+# OnlyGoOnce
 Application that provides unique restaurant suggestions. Created at CalHacks 2.0
 
 1. Make sure you have nodejs, npm, mongodb, ruby
