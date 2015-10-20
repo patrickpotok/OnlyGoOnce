@@ -1,7 +1,7 @@
 {
   "development": {
     "EnvironmentConfig": {
-      "api": "http://windask.ngrok.com"
+      "api": "http://localhost:9000"
     }
   },
   "production": {
