@@ -13,6 +13,8 @@ module.exports = {
             process.env.PORT ||
             8080,
 
+  client_uri: 'http://www.onlygoonce.com',
+
   // MongoDB connection options
   mongo: {
     uri:    process.env.MONGOLAB_URI ||

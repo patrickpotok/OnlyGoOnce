@@ -33,14 +33,13 @@ angular.module('starter.controllers', [])
 
 .controller('AuthCtrl', function($scope, $location, $window, Auth) {
   window.localStorage.token = $location.search().token
-  console.log(window.localStorage.token);
+  $location.search('token', null)
   Auth.getUser();
   $location.path('/loggedIn');
 })
 
 .controller('SettingsCtrl', function($scope, $location, Auth) {
   $scope.user = Auth.getCurrentUser();
-  console.log($scope.user)
   $scope.isLoggedIn = Auth.isLoggedIn;
 
   $scope.logout = function(){
@@ -50,7 +49,6 @@ angular.module('starter.controllers', [])
 
 
 .controller('RestaurantCtrl', function($scope,geolocation, ApiService, $window, $stateParams) {
-    console.log("Restaurant")
   ApiService.invalidateAll()
   $scope.back = function(){
     $window.history.back();
@@ -129,8 +127,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('BrowseHereCtrl', function($scope, geolocation, ApiService, $window, $stateParams) {
-  console.log("Browse")
-  console.log($stateParams)
   $scope.coords = $stateParams.coords;
   $scope.restaurants = []
 
@@ -148,7 +144,6 @@ angular.module('starter.controllers', [])
 
   geolocation.getLocation().then(function(data){
    $scope.coords =  $stateParams.coords || {lat:data.coords.latitude, long:data.coords.longitude};
-   console.log($scope.coords)
     ApiService.getRestaurants($scope.coords.lat, $scope.coords.long, 5)
     .success(function(response){
       for (var i = 0; i < 5; i++){
@@ -158,7 +153,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ConfirmCtrl', function($scope, geolocation, ApiService, $stateParams, $window){
-  console.log("Confirm")
   $scope.coords = {}
   $scope.restaurant = {}
   $scope.markers = {locations: []}
@@ -173,7 +167,6 @@ angular.module('starter.controllers', [])
   }
 
   $scope.back = function(){
-    console.log($window.history)
     $window.history.back();
   }
 
@@ -228,7 +221,6 @@ angular.module('starter.controllers', [])
       }
     };
     ApiService.postLogs($scope.restaurant.id)
-    console.log("PostLogs")
   })
 
   });
