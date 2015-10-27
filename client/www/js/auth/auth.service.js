@@ -4,7 +4,6 @@ angular.module('starter')
   .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
     var currentUser = {};
     if(window.localStorage.token || $cookieStore.get('token')) {
-      console.log("Token!")
       currentUser = User.get();
     }
 

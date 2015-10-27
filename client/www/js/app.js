@@ -41,11 +41,9 @@ angular.module('starter', [
       console.log(loggedIn)
 
      if (!loggedIn) {
-       //event.preventDefault();
        $location.path('/');
      }
      else if ($location.path() == '/'){
-       //event.preventDefault();
        $location.path('/loggedIn');
      }
     });
@@ -59,7 +57,6 @@ angular.module('starter', [
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
   .state('dash-out', {
     cache: false,
     url: '/',
@@ -112,11 +109,11 @@ angular.module('starter', [
     controller: 'BrowseAnyCtrl'
   })
   
-    .state('auth', {
-      cache: false,
-      url: '/authToken',
-      controller: 'AuthCtrl'
-    });
+  .state('auth', {
+    cache: false,
+    url: '/authToken',
+    controller: 'AuthCtrl'
+  });
 
 
   MapConfigProvider.setOptions({
