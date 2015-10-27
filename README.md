@@ -9,6 +9,7 @@ Inside client folder:
 ----------------
 - ```bower install```
 - ```npm install```
+- ```gulp config --env development``` (Generate config file) (If running mobile/prod, use ```production``` instead of ```development```)
 - ```ionic serve``` (To test)
 
 Set up ionic:

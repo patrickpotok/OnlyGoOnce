@@ -7,6 +7,14 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var gulpNgConfig = require('gulp-ng-config');
+var minimist = require('minimist');
+
+var knownOptions = {
+  string: 'env',
+  default: { env: process.env.CLIENT_NODE_ENV || 'development'} // 'development', 'production'
+};
+
+var options = minimist(process.argv.slice(2), knownOptions);
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -30,7 +38,7 @@ gulp.task('sass', function(done) {
 
 gulp.task('config', function () {
   gulp.src('configFile.json')
-  .pipe(gulpNgConfig('freshFeast.config', { environment: (process.env.CLIENT_NODE_ENV || 'development')}))
+  .pipe(gulpNgConfig('freshFeast.config', { environment: options.env }))
   .pipe(gulp.dest('./www/js'))
 });
 
