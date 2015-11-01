@@ -2,6 +2,7 @@
 
 var path = require('path');
 var _ = require('lodash');
+var config = require('../local.env.js');
 
 function requiredProcessEnv(name) {
   if(!process.env[name]) {
@@ -45,14 +46,14 @@ var all = {
   },
 
   facebook: {
-    clientID:     '478560092324500' || process.env.FACEBOOK_ID || 'id',
-    clientSecret: 'b527ede1877a849311079bb6b8ebd95d' ||  process.env.FACEBOOK_SECRET || 'secret',
+    clientID:     config.FACEBOOK_ID || process.env.FACEBOOK_ID || 'id',
+    clientSecret: config.FACEBOOK_SECRET ||  process.env.FACEBOOK_SECRET || 'secret',
     callbackURL:  (process.env.DOMAIN || '') + '/auth/facebook/callback'
   },
 
   google: {
-    clientID:     '16237610741-ul6a1nf85vcnh40qf67gq66sb2igcnji.apps.googleusercontent.com' || process.env.GOOGLE_ID || 'id',
-    clientSecret: 'kGzrWZQOtwUOhENT4y1TnPDb' || process.env.GOOGLE_SECRET || 'secret',
+    clientID:     config.GOOGLE_ID || process.env.GOOGLE_ID || 'id',
+    clientSecret: config.GOOGLE_SECRET || process.env.GOOGLE_SECRET || 'secret',
     callbackURL:  (process.env.DOMAIN || '') + '/auth/google/callback'
   }
 };

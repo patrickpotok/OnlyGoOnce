@@ -6,6 +6,7 @@ var Restaurant = require('./restaurant.model');
 var RestaurantLogs = require('./restaurantlogs.model');
 var User = require('./../user/user.model');
 var History = require('../history/history.model');
+var config = require('../../config/local.env.js');
 
 // Get list of histories
 exports.index = function(req, res) {
@@ -13,7 +14,7 @@ exports.index = function(req, res) {
   var latitude = req.query.latitude
   var longitude = req.query.longitude
   var number = parseInt(req.query.number);
-  var apiKey = 'ENTER_KEY_HERE';
+  var apiKey = config.GOOGLE_MAPS_API_KEY;
   var baseURI = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
   var locationParam = '&location=' + req.query.latitude + ',' + req.query.longitude;
   var additionalParams = '&types=restaurant&rankby=distance&opennow=true';
