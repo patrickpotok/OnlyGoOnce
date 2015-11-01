@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('starter')
+angular.module('onlyGoOnce')
   .factory('User', function ($resource, EnvironmentConfig) {
     return $resource(EnvironmentConfig.api + '/api/users/:id/:controller', {
       id: '@_id'

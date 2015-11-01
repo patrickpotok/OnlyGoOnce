@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('onlyGoOnce')
 .controller('BrowseHereCtrl', function($scope, geolocation, ApiService, $window, $stateParams) {
   $scope.coords = $stateParams.coords;
   $scope.restaurants = []

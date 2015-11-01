@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('starter')
+angular.module('onlyGoOnce')
   .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
     var currentUser = {};
     if(window.localStorage.token || $cookieStore.get('token')) {
