@@ -1,0 +1,16 @@
+# Client files/folders to ignore
+client/node_modules/
+client/platforms/
+client/plugins/
+client/www/lib/
+client/www/js/configFile.js
+
+# Server files/folders to ignore
+server/node_modules/
+server/public/
+server/.tmp
+server/.sass-cache
+server/.idea
+server/dist/
+server/config/local.env.js
+server/npm-debug.log
