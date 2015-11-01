@@ -10,6 +10,7 @@ Inside client folder:
 - ```bower install```
 - ```npm install```
 - ```gulp config --env development``` (Generate config file) (If running mobile/prod, use ```production``` instead of ```development```)
+- ```gulp watch``` (For now, until we get rid of ionic serve...) (Watches and injects js/css)
 - ```ionic serve``` (To test)
 
 Set up ionic:
