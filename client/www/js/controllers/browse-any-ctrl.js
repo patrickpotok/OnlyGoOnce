@@ -1,4 +1,4 @@
-angular.module('starter.controllers')
+angular.module('starter')
 .controller('BrowseAnyCtrl', function($scope, geolocation, $window) {
   $scope.coords = {}
   $scope.coordsChosen = {}

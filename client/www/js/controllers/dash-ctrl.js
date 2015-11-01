@@ -1,4 +1,4 @@
-angular.module('starter.controllers')
+angular.module('starter')
 .controller('DashCtrl', function($scope, $window, Auth, $location, EnvironmentConfig) {
   $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.token = window.localStorage.token;

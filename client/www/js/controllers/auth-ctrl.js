@@ -1,4 +1,4 @@
-angular.module('starter.controllers')
+angular.module('starter')
 .controller('AuthCtrl', function($scope, $location, $window, Auth) {
   window.localStorage.token = $location.search().token
   $location.search('token', null)
