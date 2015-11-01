@@ -1,4 +1,4 @@
-angular.module('starter.controllers')
+angular.module('onlyGoOnce')
 .controller('RestaurantCtrl', function($scope,geolocation, ApiService, $window, $stateParams) {
   ApiService.invalidateAll()
   $scope.back = function(){

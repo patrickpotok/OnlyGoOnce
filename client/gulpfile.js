@@ -9,6 +9,7 @@ var minimist = require('minimist');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var sh = require('shelljs');
+var connect = require('gulp-connect');
 
 var knownOptions = {
   string: 'env',
@@ -22,7 +23,20 @@ var paths = {
   js: ['./www/js/**/*.js']
 };
 
+gulp.task('serve', ['inject', 'watch'], function() {
+  connect.server({
+    root: 'www',
+    port: 8100,
+    livereload: true
+  });
+});
+
 gulp.task('default', ['sass', 'config']);
+
+gulp.task('reload', function () {
+  gulp.src('./www/*')
+    .pipe(connect.reload());
+});
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -45,7 +59,9 @@ gulp.task('config', function () {
 });
 
 gulp.task('watch', ['inject'], function() {
+  gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.js, ['inject']);
+  gulp.watch(['./www/**/*'], ['reload']);
 });
 
 gulp.task('install', ['git-check'], function() {

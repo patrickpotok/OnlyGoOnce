@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('starter')
+angular.module('onlyGoOnce')
   .factory('ApiService', ApiService);
   
 function ApiService($http, EnvironmentConfig) {
