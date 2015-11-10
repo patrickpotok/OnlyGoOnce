@@ -29,14 +29,9 @@ angular.module('onlyGoOnce', [
       StatusBar.styleLightContent();
     }
   });
-  
-  console.log(ionic.Platform.isWebView())
-  console.log(ionic.Platform.isAndroid())
 
   $rootScope.$on('$stateChangeStart', function (event, next) {
     Auth.isLoggedInAsync(function(loggedIn) {
-      console.log("StateChange")
-      console.log(loggedIn)
 
      if (!loggedIn) {
        $location.path('/');
@@ -106,7 +101,7 @@ angular.module('onlyGoOnce', [
     templateUrl: 'templates/dash-browse-any.html',
     controller: 'BrowseAnyCtrl'
   })
-  
+
   .state('auth', {
     cache: false,
     url: '/authToken',
@@ -136,7 +131,6 @@ angular.module('onlyGoOnce', [
       config.headers = config.headers || {};
       if (window.localStorage.token || $cookieStore.get('token')) {
         config.headers.Authorization = 'Bearer ' + (window.localStorage.token || $cookieStore.get('token'));
-        console.log(config.headers.Authorization)
       }
       return config;
     },

@@ -8,18 +8,18 @@ var User = require('./../user/user.model');
 var History = require('../history/history.model');
 var config = require('../../config/local.env.js');
 
-// Get list of histories
+// Get list of restaurant
 exports.index = function(req, res) {
-  var userId = req.user && req.user._id;
-  var latitude = req.query.latitude
-  var longitude = req.query.longitude
-  var number = parseInt(req.query.number);
-  var apiKey = config.GOOGLE_MAPS_API_KEY;
-  var baseURI = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
-  var locationParam = '&location=' + req.query.latitude + ',' + req.query.longitude;
-  var additionalParams = '&types=restaurant&rankby=distance&opennow=true';
-  var url = baseURI + 'key=' + apiKey + locationParam + additionalParams;
-  var includeGoAgain = req.query.includeGoAgain
+  var userId = req.user && req.user._id,
+    latitude = req.query.latitude,
+    longitude = req.query.longitude,
+    number = parseInt(req.query.number),
+    apiKey = config.GOOGLE_MAPS_API_KEY,
+    baseURI = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?',
+    locationParam = '&location=' + req.query.latitude + ',' + req.query.longitude,
+    additionalParams = '&types=restaurant&rankby=distance&opennow=true',
+    url = baseURI + 'key=' + apiKey + locationParam + additionalParams;
+
   https.get(url, function(response) {
     var str = '';
 
@@ -38,18 +38,11 @@ exports.index = function(req, res) {
         });
 
         var shuffledResults = knuthShuffle(filteredResults);
-        var resultsToReturn = shuffledResults.slice(0, number);
+        var resultsToReturn = shuffledResults.length === number ? shuffledResults : shuffledResults.slice(0, number);
 
-        return res.json(200, resultsToReturns);
+        return res.status(200).json(resultsToReturn);
       })
     });
-  });
-}
-
-exports.getLogs = function(req, res) {
-  RestaurantLogs.find(function (err, logs) {
-    if(err) { return handleError(res, err); }
-    return res.status(200).json(logs);
   });
 }
 
