@@ -1,6 +1,10 @@
 # OnlyGoOnce
-Application that provides unique restaurant suggestions. Created at CalHacks 2.0
+Application that provides unique restaurant suggestions.  
+Suggestions are based on location and by avoiding restaurants that the user has previously visited.
 
+
+Requirements:
+----------------
 1. Make sure you have nodejs, npm, mongodb, ruby
 2. Make sure to install gulp, grunt and bower globally
 3. Make sure to install compass from ruby gem (gem install compass)
